@@ -1,5 +1,3 @@
-package P3;
-
 public class Cpu {
 	
 	private Queue cpuQueue;

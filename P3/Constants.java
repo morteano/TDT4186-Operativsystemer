@@ -1,6 +1,4 @@
-package P3;
-
-public interface Constants 
+public interface Constants
 {
 	/** Event type describing the arrival of a new process */
     public static final int NEW_PROCESS = 1;

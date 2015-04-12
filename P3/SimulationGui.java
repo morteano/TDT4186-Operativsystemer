@@ -1,5 +1,3 @@
-package P3;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
