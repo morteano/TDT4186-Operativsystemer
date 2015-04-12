@@ -45,7 +45,7 @@ public class Simulator implements Constants
 		eventQueue = new EventQueue();
 		memory = new Memory(memoryQueue, memorySize, statistics);
         cpu = new Cpu(cpuQueue, maxCpuTime, statistics);
-        //io = new Io(ioQueue, avgIoTime, statistics);
+        //io = new Io(ioQueue, avgIoTime, statistics); //TODO::uncomment
 		clock = 0;
     }
 
@@ -70,7 +70,9 @@ public class Simulator implements Constants
 			clock = event.getTime();
 			// Let the memory unit and the GUI know that time has passed
 			memory.timePassed(timeDifference);
-			gui.timePassed(timeDifference);
+            cpu.timePassed(timeDifference);
+            //io.timePassed(timeDifference); //TODO::uncomment
+            gui.timePassed(timeDifference);
 			// Deal with the event
 			if (clock < simulationLength) {
 				processEvent(event);
