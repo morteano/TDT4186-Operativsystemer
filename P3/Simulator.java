@@ -143,6 +143,9 @@ public class Simulator implements Constants
 				cpu.busy = true;
 				nextProcess.leftCpuQueue(clock);
 				cpu.execute(nextProcess);
+				if (nextProcess.getCpuTimeNeeded() <= 0) {
+					memory.processCompleted(nextProcess);
+				}
 				eventQueue.insertEvent(new Event(SWITCH_PROCESS, clock + cpu.getCpuTimeSlice()));
 			}
 
@@ -166,6 +169,7 @@ public class Simulator implements Constants
 	 * Simulates a process switch.
 	 */
 	private void switchProcess() {
+
 		cpu.busy = false;
 	}
 

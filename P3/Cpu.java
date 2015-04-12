@@ -26,6 +26,7 @@ public class Cpu {
 		return null;
 	}
 	public void execute(Process p) {
+		cpuQueue.removeNext();
 		p.execute(cpuTimeSlice);
 	}
 	public long getCpuTimeSlice() {
