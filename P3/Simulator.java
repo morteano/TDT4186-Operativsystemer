@@ -9,6 +9,10 @@ public class Simulator implements Constants
     private EventQueue eventQueue;
 	/** Reference to the memory unit */
     private Memory memory;
+    /** Reference to the CPU unit */
+    private Cpu cpu;
+    /** Reference to the IO unit */
+    private Io io;
 	/** Reference to the GUI interface */
 	private Gui gui;
 	/** Reference to the statistics collector */
@@ -19,10 +23,6 @@ public class Simulator implements Constants
 	private long simulationLength;
 	/** The average length between process arrivals */
 	private long avgArrivalInterval;
-    /** The maximum time a process can spend in the CPU */
-    private long maxCpuTime;
-    /** Average IO time */
-    private long avgIoTime;
 
 	/**
 	 * Constructs a scheduling simulator with the given parameters.
@@ -44,9 +44,9 @@ public class Simulator implements Constants
 		statistics = new Statistics();
 		eventQueue = new EventQueue();
 		memory = new Memory(memoryQueue, memorySize, statistics);
+        cpu = new Cpu(cpuQueue, maxCpuTime, statistics);
+        //io = new Io(ioQueue, avgIoTime, statistics);
 		clock = 0;
-		this.maxCpuTime = maxCpuTime;
-        this.avgIoTime = avgIoTime;
     }
 
     /**
