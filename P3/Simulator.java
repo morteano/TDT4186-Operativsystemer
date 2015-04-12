@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.*;
 
 /**
@@ -135,17 +136,26 @@ public class Simulator implements Constants
 		Process p = memory.checkMemory(clock);
 		// As long as there is enough memory, processes are moved from the memory queue to the cpu queue
 		while(p != null) {
-			
+
+			cpu.addProcessToQueue(p);
+			Process nextProcess = cpu.getNextProcess();
+			if (nextProcess != null && !cpu.busy) {
+				cpu.busy = true;
+				nextProcess.leftCpuQueue(clock);
+				cpu.execute(nextProcess);
+				eventQueue.insertEvent(new Event(SWITCH_PROCESS, cpu.getCpuTimeSlice()));
+			}
+
 			// TODO: Add this process to the CPU queue!
 			// Also add new events to the event queue if needed
 
 			// Since we haven't implemented the CPU and I/O device yet,
 			// we let the process leave the system immediately, for now.
-			memory.processCompleted(p);
+			//memory.processCompleted(p);
 			// Try to use the freed memory:
-			flushMemoryQueue();
+			//flushMemoryQueue();
 			// Update statistics
-			p.updateStatistics(statistics);
+			//p.updateStatistics(statistics);
 
 			// Check for more free memory
 			p = memory.checkMemory(clock);
@@ -156,7 +166,7 @@ public class Simulator implements Constants
 	 * Simulates a process switch.
 	 */
 	private void switchProcess() {
-		// Incomplete
+		cpu.busy = false;
 	}
 
 	/**

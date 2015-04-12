@@ -6,7 +6,7 @@ public class Cpu {
 	
 	private long cpuTimeSlice;
 	
-	private boolean busy;
+	public boolean busy;
 	
 	public Cpu(Queue cpuQueue, long cpuTimeSlice, Statistics statistics) {
 		this.cpuQueue = cpuQueue;
@@ -18,23 +18,17 @@ public class Cpu {
 	public void addProcessToQueue(Process process) {
 		cpuQueue.insert(process);
 	}
-	
-	public Process checkCpu(long clock) {
-		if(!cpuQueue.isEmpty()) { 
-			Process nextProcess = (Process)cpuQueue.getNext();
-			if(nextProcess.getCpuTimeNeeded() > 0) {
-				if (!busy) {
-					// execute process in CPU
-					nextProcess.leftCpuQueue(clock);
-					cpuQueue.removeNext();
-					return nextProcess;
-				}
-			}
+
+	public Process getNextProcess() {
+		if(!cpuQueue.isEmpty()) {
+			return (Process) cpuQueue.getNext();
 		}
 		return null;
 	}
-	
-	public void moveBackInQueue(Process process) {
-		
+	public void execute(Process p) {
+		p.execute(cpuTimeSlice);
+	}
+	public long getCpuTimeSlice() {
+		return cpuTimeSlice;
 	}
 }
