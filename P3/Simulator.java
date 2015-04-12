@@ -143,7 +143,7 @@ public class Simulator implements Constants
 				cpu.busy = true;
 				nextProcess.leftCpuQueue(clock);
 				cpu.execute(nextProcess);
-				eventQueue.insertEvent(new Event(SWITCH_PROCESS, cpu.getCpuTimeSlice()));
+				eventQueue.insertEvent(new Event(SWITCH_PROCESS, clock + cpu.getCpuTimeSlice()));
 			}
 
 			// TODO: Add this process to the CPU queue!
