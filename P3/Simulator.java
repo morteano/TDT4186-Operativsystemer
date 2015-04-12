@@ -19,7 +19,10 @@ public class Simulator implements Constants
 	private long simulationLength;
 	/** The average length between process arrivals */
 	private long avgArrivalInterval;
-	// Add member variables as needed
+    /** The maximum time a process can spend in the CPU */
+    private long maxCpuTime;
+    /** Average IO time */
+    private long avgIoTime;
 
 	/**
 	 * Constructs a scheduling simulator with the given parameters.
@@ -42,7 +45,8 @@ public class Simulator implements Constants
 		eventQueue = new EventQueue();
 		memory = new Memory(memoryQueue, memorySize, statistics);
 		clock = 0;
-		// Add code as needed
+		this.maxCpuTime = maxCpuTime;
+        this.avgIoTime = avgIoTime;
     }
 
     /**
