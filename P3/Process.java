@@ -127,8 +127,8 @@ public class Process implements Constants
 	}
 	
 	public void execute(long cpuTimeSlice) {
-        this.cpuTimeNeeded -= cpuTimeSlice;
-        this.timeSpentInCpu += cpuTimeSlice;
+		this.cpuTimeNeeded -= cpuTimeSlice;
+		this.cpuTimeNeeded = 1;
 	}
 	// Add more methods as needed
 }
