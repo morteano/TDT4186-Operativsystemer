@@ -1,3 +1,5 @@
+package p3;
+
 /**
  * This class implements functionality associated with
  * the memory device of the simulated system.

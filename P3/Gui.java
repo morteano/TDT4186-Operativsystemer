@@ -1,3 +1,5 @@
+package p3;
+
 /**
  * The GUI methods that are publicly available to other parts of the program.
  */

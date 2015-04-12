@@ -1,3 +1,5 @@
+package p3;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -210,3 +212,4 @@ public class SimulationGui extends JFrame implements Constants, ActionListener, 
 	    } catch (InterruptedException ie) {}
 	}
 }
+

@@ -1,3 +1,5 @@
+package p3;
+
 import java.awt.*;
 import javax.swing.*;
 

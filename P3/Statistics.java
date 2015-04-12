@@ -1,3 +1,5 @@
+package p3;
+
 /**
  * This class contains a lot of public variables that can be updated
  * by other classes during a simulation, to collect information about

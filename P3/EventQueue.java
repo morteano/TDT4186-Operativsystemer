@@ -1,3 +1,5 @@
+package p3;
+
 import java.util.*;
 
 /**
@@ -49,10 +51,4 @@ public class EventQueue
 		return events.size() == 0;
 	}
 }
-
-
-
-
-
-
 
