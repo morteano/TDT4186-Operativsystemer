@@ -70,7 +70,7 @@ public class Simulator implements Constants
 			clock = event.getTime();
 			// Let the memory unit and the GUI know that time has passed
 			memory.timePassed(timeDifference);
-            cpu.timePassed(timeDifference);
+            //cpu.timePassed(timeDifference); //TODO::Remove this comment
             //io.timePassed(timeDifference); //TODO::uncomment
             gui.timePassed(timeDifference);
 			// Deal with the event
