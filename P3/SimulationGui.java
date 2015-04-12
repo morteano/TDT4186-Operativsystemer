@@ -1,4 +1,4 @@
-package p3;
+package P3;
 
 import java.awt.*;
 import java.awt.event.*;

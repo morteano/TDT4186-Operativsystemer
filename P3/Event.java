@@ -1,4 +1,4 @@
-package p3;
+package P3;
 
 /**
  * This class contains information about an event. The different

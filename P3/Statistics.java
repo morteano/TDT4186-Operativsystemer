@@ -1,4 +1,4 @@
-package p3;
+package P3;
 
 /**
  * This class contains a lot of public variables that can be updated

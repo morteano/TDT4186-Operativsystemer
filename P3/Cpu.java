@@ -1,4 +1,4 @@
-package p3;
+package P3;
 
 public class Cpu {
 	
