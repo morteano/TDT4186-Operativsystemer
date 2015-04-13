@@ -19,6 +19,17 @@ public class Statistics
 	public long nofSwitchedProcesses = 0;
 	/** The number of processed I/O operations in the system */
 	public long nofIOProcesses = 0;
+    /** Average throughout (processes per second) */
+    public long avgThroughout = 0;
+    /** Total CPU time spent processing */
+    public long totalTimeSpentInCpu = 0;
+    /** Total CPU time spent waiting */
+    public long totalTimeSpentWaitingCpu = 0;
+    /** Largest occuring cpu queue length */
+    public long cpuQueueLargestLength = 0;
+    /** Largest occuring I/O queue length */
+    public long ioQueueLargestLength = 0;
+
 
 	/**
 	 * Prints out a report summarizing all collected data about the simulation.
