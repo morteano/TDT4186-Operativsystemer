@@ -15,7 +15,7 @@ public class Cpu {
 		this.busy = false;
 	}
 	
-	public void addProcessToQueue(Process process) {
+	public void insertProcess(Process process) {
 		cpuQueue.insert(process);
 	}
 

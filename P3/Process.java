@@ -112,9 +112,8 @@ public class Process implements Constants
 	 * leaves the system.
      * @param statistics	The Statistics object to be updated.
      */
-	public void updateStatistics(Statistics statistics) {
+	public void updateMemoryStatistics(Statistics statistics) {
 		statistics.totalTimeSpentWaitingForMemory += timeSpentWaitingForMemory;
-		statistics.nofCompletedProcesses++;
 	}
 	
 	public void leftCpuQueue(long clock) {

@@ -137,17 +137,8 @@ public class Simulator implements Constants
 		// As long as there is enough memory, processes are moved from the memory queue to the cpu queue
 		while(p != null) {
 
-			cpu.addProcessToQueue(p);
-			Process nextProcess = cpu.getNextProcess();
-			if (nextProcess != null && !cpu.busy) {
-				cpu.busy = true;
-				nextProcess.leftCpuQueue(clock);
-				cpu.execute(nextProcess);
-				if (nextProcess.getCpuTimeNeeded() <= 0) {
-					memory.processCompleted(nextProcess);
-				}
-				eventQueue.insertEvent(new Event(SWITCH_PROCESS, clock + cpu.getCpuTimeSlice()));
-			}
+			p.leftMemoryQueue();
+			cpu.insertProcess(p);
 
 			// TODO: Add this process to the CPU queue!
 			// Also add new events to the event queue if needed
@@ -156,9 +147,9 @@ public class Simulator implements Constants
 			// we let the process leave the system immediately, for now.
 			//memory.processCompleted(p);
 			// Try to use the freed memory:
-			//flushMemoryQueue();
+			flushMemoryQueue();
 			// Update statistics
-			//p.updateStatistics(statistics);
+			p.updateMemoryStatistics(statistics);
 
 			// Check for more free memory
 			p = memory.checkMemory(clock);
