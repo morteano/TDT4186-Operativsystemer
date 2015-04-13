@@ -63,8 +63,8 @@ public class Statistics
         System.out.println("Average I/O queue length:                                   "+(float)ioQueueLengthTime/simulationLength);
         if(nofCompletedProcesses > 0) {
 			System.out.println("Average # of times a process has been placed in memory queue:   "+1);
-            System.out.println("Average # of times a process has been placed in cpu queue:      "+1);
-            System.out.println("Average # of times a process has been placed in I/O queue:      "+1);
+            System.out.println("Average # of times a process has been placed in cpu queue:      "+"TODO");
+            System.out.println("Average # of times a process has been placed in I/O queue:      "+"TODO");
             System.out.println();
             System.out.println("Average time spent in system per process:               "+simulationLength/nofCompletedProcesses+" ms");
             System.out.println("Average time spent waiting for memory per process:      "+totalTimeSpentWaitingForMemory/nofCompletedProcesses+" ms");
