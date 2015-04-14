@@ -125,7 +125,7 @@ public class Process implements Constants
         statistics.totalTimeInIOQueue += timeSpentWaitingForIo;
         statistics.totalNumberOfTimesPlacedInCPUQueue += nofTimesInReadyQueue;
         statistics.totalNumberOfTimesPlacedInIOQueue += nofTimesInIoQueue;
-        statistics.totalNumberOfIOProcessings += nofTimesInIO;
+        statistics.totalNumberOfIOProcesses += nofTimesInIO;
     }
 
     // Add more methods as needed

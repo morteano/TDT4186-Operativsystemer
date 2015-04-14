@@ -4,18 +4,18 @@ public class Cpu {
     /** The queue of processes waiting for cpuTime */
     private Queue cpuQueue;
     /** A reference to the statistics collector */
-    private Statistics stats;
+    private Statistics statistics;
     /**long to keep track of what is the maximum cpu-time */
     private long maxCPUTime;
     //	reference to the gui
     private Gui gui;
     //	reference to the currently active process
-    private Process curActProcess;
+    private Process currentProcess;
 
     //	constructor
-    public Cpu(Queue cpuQue, Statistics stats, long maxCPUTime, Gui gui){
+    public Cpu(Queue cpuQue, Statistics statistics, long maxCPUTime, Gui gui){
         this.cpuQueue = cpuQue;
-        this.stats = stats;
+        this.statistics = statistics;
         this.maxCPUTime = maxCPUTime;
         this.gui = gui;
     }
@@ -26,12 +26,12 @@ public class Cpu {
 
     public void addProcess(Process p){
         cpuQueue.insert(p);
-        stats.maxCPUQueueSize = Math.max(cpuQueue.getQueueLength(), stats.maxCPUQueueSize);
+        statistics.maxCPUQueueSize = Math.max(cpuQueue.getQueueLength(), statistics.maxCPUQueueSize);
     }
 
-    public Process stopCurActProcess(){
-        Process p = curActProcess;
-        curActProcess = null;
+    public Process stopCurrentProcess(){
+        Process p = currentProcess;
+        currentProcess = null;
         gui.setCpuActive(null);
         return p;
     }
@@ -48,22 +48,22 @@ public class Cpu {
 
     public Process startNextProcess(){
         if(cpuQueue.isEmpty()){
-            this.curActProcess = null;
+            this.currentProcess = null;
             //gui.setCpuActive(null);
             return null;
         }
-        curActProcess = (Process) cpuQueue.removeNext();
-        gui.setCpuActive(curActProcess);
-        return curActProcess;
+        currentProcess = (Process) cpuQueue.removeNext();
+        gui.setCpuActive(currentProcess);
+        return currentProcess;
     }
 
 
     public boolean isIdle(){
-        return this.curActProcess == null;
+        return this.currentProcess == null;
     }
 
     public void timePassed(long time){
-        stats.totalTimeInCUPQueue += cpuQueue.getQueueLength() * time;
+        statistics.totalTimeInCUPQueue += cpuQueue.getQueueLength() * time;
     }
 
 

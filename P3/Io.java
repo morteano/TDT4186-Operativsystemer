@@ -4,7 +4,7 @@ public class Io {
     /** The queue of processes waiting IO time */
     private Queue ioQueue;
     /** A reference to the statistics collector */
-    private Statistics stats;
+    private Statistics statistics;
     /** The average process time */
     private long avgIOTime;
     /** A reference to the gui, so we can animate stuff */
@@ -13,37 +13,36 @@ public class Io {
      * it will need to occasionally be set to "null" so the
      * rest of the program knows the IO device is free.
      */
-    private Process curActProcess;
+    private Process currentProcess;
 
-    public Io(Queue ioQueue, Statistics stats, long avgIOTime, Gui gui){
+    public Io(Queue ioQueue, Statistics statistics, long avgIOTime, Gui gui){
         this.ioQueue = ioQueue;
-        this.stats = stats;
+        this.statistics = statistics;
         this.avgIOTime = avgIOTime;
         this.gui = gui;
     }
 
     public long getIoTime() {
-//		return avgIOTime;
         return (long) (Math.random() * (avgIOTime * 2) + (long)(Math.floor(avgIOTime/ 2)));
     }
 
-    public Process stopCurActProcess(){
-        Process p = curActProcess;
-        curActProcess = null;
+    public Process stopCurrentProcess(){
+        Process p = currentProcess;
+        currentProcess = null;
         gui.setIoActive(null);
         return p;
     }
 
     public void timePassed(long time){
-        stats.totalTimeInIOQueue += ioQueue.getQueueLength() * time;
+        statistics.totalTimeInIOQueue += ioQueue.getQueueLength() * time;
     }
 
 
 
     public boolean addProcess(Process p){
         ioQueue.insert(p);
-        stats.maxIOQueueSize = Math.max(stats.maxIOQueueSize, ioQueue.getQueueLength());
-        if(curActProcess == null){
+        statistics.maxIOQueueSize = Math.max(statistics.maxIOQueueSize, ioQueue.getQueueLength());
+        if(currentProcess == null){
             startProcess();
             return true;
         }
@@ -53,22 +52,12 @@ public class Io {
 
     public Process startProcess() {
         if (ioQueue.isEmpty()) {
-            curActProcess = null;
+            currentProcess = null;
             gui.setIoActive(null);
             return null;
         }
-        curActProcess = (Process) ioQueue.removeNext();
-        gui.setIoActive(curActProcess);
-        return curActProcess;
+        currentProcess = (Process) ioQueue.removeNext();
+        gui.setIoActive(currentProcess);
+        return currentProcess;
     }
-
-
-
-
-
-
-
-
-
-
 }
