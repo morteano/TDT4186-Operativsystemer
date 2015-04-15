@@ -142,8 +142,6 @@ public class Simulator implements Constants
             if (cpu.isIdle()) {
                 switchProcess();
             }
-            // Try to use the freed memory:
-            flushMemoryQueue();
             // Check for more free memory
             p = memory.checkMemory(clock);
         }

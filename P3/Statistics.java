@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 /**
  * This class contains a lot of public variables that can be updated
  * by other classes during a simulation, to collect information about
@@ -24,11 +22,15 @@ public class Statistics
     /**	Total time the CPU has been active */
     public long totalTimeInCPU = 0;
     /**	Total amount of time the processes has spent in CPU Queue */
-    public long totalTimeInCUPQueue = 0;
+    public long totalTimeInCPUQueue = 0;
+    /** The largest CPU queue length that has occured */
+    public long cpuQueueLargestLength = 0;
     /**	Total amount of time spent in IO */
     public long totalTimeInIO = 0;
     /**	Total amount of time spent waiting for IO (time spent in IO queue) */
     public long totalTimeInIOQueue = 0;
+    /** The largest I/O queue length that has occured */
+    public long ioQueueLargestLength = 0;
     /**	Total number of times a process has been added to the CPU queue */
     public long totalNumberOfTimesPlacedInCPUQueue = 0;
     /**	Total number of times a process has been added to the IO queue */
@@ -59,18 +61,18 @@ public class Statistics
         System.out.println();
         System.out.println("Largest occuring memory queue length:                         "+memoryQueueLargestLength);
         System.out.println("Average memory queue length:                                  "+(float)memoryQueueLengthTime/simulationLength);
-        System.out.println("Largest occuring CPU queue length:                            "+maxCPUQueueSize);
-        System.out.println("Average CPU queue length:                                     "+(float)totalTimeInCUPQueue/simulationLength);
-        System.out.println("Largest occuring I/O queue length:                            "+maxIOQueueSize);
+        System.out.println("Largest occuring CPU queue length:                            "+cpuQueueLargestLength);
+        System.out.println("Average CPU queue length:                                     "+(float)totalTimeInCPUQueue/simulationLength);
+        System.out.println("Largest occuring I/O queue length:                            "+ioQueueLargestLength);
         System.out.println("Average I/O queue length:                                     "+(float)totalTimeInIOQueue/simulationLength);
         if(nofCompletedProcesses > 0) {
             System.out.println("Average # of times a process has been placed in memory queue: "+1);
             System.out.println("Average # of times a process has been placed in CPU queue:    "+(float)totalNumberOfTimesPlacedInCPUQueue/nofCompletedProcesses);
             System.out.println("Average # of times a process has been placed in I/O queue:    "+(float)totalNumberOfTimesPlacedInIOQueue/nofCompletedProcesses);
             System.out.println();
-            System.out.println("Average time spent in system per process:                     "+(float)(totalTimeSpentWaitingForMemory+totalTimeInCPU+totalTimeInCUPQueue+totalTimeInIO+totalTimeInIOQueue)/nofCompletedProcesses+" ms");
+            System.out.println("Average time spent in system per process:                     "+(float)(totalTimeSpentWaitingForMemory+totalTimeInCPU+totalTimeInCPUQueue+totalTimeInIO+totalTimeInIOQueue)/nofCompletedProcesses+" ms");
             System.out.println("Average time spent waiting for memory per process:            "+(float)totalTimeSpentWaitingForMemory/nofCompletedProcesses+" ms");
-            System.out.println("Average time spent waiting for CPU per process:               "+(float)totalTimeInCUPQueue/nofCompletedProcesses + " ms");
+            System.out.println("Average time spent waiting for CPU per process:               "+(float)totalTimeInCPUQueue/nofCompletedProcesses + " ms");
             System.out.println("Average time spent processing per process:                    "+(float)totalTimeInCPU/nofCompletedProcesses + " ms");
             System.out.println("Average time spent waiting for I/O per process:               "+(float)totalTimeInIOQueue/nofCompletedProcesses + " ms");
             System.out.println("Average time spent in I/O per process:                        "+(float)totalTimeInIO/nofCompletedProcesses + " ms");

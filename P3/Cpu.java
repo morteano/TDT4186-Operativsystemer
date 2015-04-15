@@ -36,20 +36,9 @@ public class Cpu {
         return p;
     }
 
-//	public Process startNextProcess(){
-//		if(!cpuQueue.isEmpty()){
-//			curActProcess = (Process) cpuQueue.removeNext();
-//			gui.setCpuActive(curActProcess);
-//			return curActProcess;
-//		}
-//		this.curActProcess = null;
-//		return null;
-//	}
-
     public Process startNextProcess(){
         if(cpuQueue.isEmpty()){
             this.currentProcess = null;
-            //gui.setCpuActive(null);
             return null;
         }
         currentProcess = (Process) cpuQueue.removeNext();
@@ -62,9 +51,10 @@ public class Cpu {
         return this.currentProcess == null;
     }
 
-    public void timePassed(long time){
-        statistics.totalTimeInCUPQueue += cpuQueue.getQueueLength() * time;
+    public void timePassed(long timePassed){
+        statistics.totalTimeInCPUQueue += cpuQueue.getQueueLength() * timePassed;
+        if (cpuQueue.getQueueLength() > statistics.cpuQueueLargestLength) {
+            statistics.cpuQueueLargestLength = cpuQueue.getQueueLength();
+        }
     }
-
-
 }

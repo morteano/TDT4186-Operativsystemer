@@ -120,7 +120,6 @@ public class Process implements Constants
         statistics.totalTimeSpentWaitingForMemory += timeSpentWaitingForMemory;
         statistics.nofCompletedProcesses++;
         statistics.totalTimeInCPU += timeSpentInCpu;
-        statistics.totalTimeInCUPQueue += timeSpentInReadyQueue;
         statistics.totalTimeInIO += timeSpentInIo;
         statistics.totalTimeInIOQueue += timeSpentWaitingForIo;
         statistics.totalNumberOfTimesPlacedInCPUQueue += nofTimesInReadyQueue;
@@ -148,7 +147,6 @@ public class Process implements Constants
 
     public long getTimeToNextIOOperation(){
         if (timeToNextIoOperation <= 0)
-//			return 5000;
             return timeToNextIoOperation = (long)(Math.random() * avgIoInterval + (long) (Math.floor(avgIoInterval * 3)));
         return timeToNextIoOperation;
     }

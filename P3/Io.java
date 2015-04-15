@@ -33,11 +33,12 @@ public class Io {
         return p;
     }
 
-    public void timePassed(long time){
-        statistics.totalTimeInIOQueue += ioQueue.getQueueLength() * time;
+    public void timePassed(long timePassed){
+        statistics.totalTimeInIOQueue += ioQueue.getQueueLength() * timePassed;
+        if (ioQueue.getQueueLength() > statistics.ioQueueLargestLength) {
+            statistics.ioQueueLargestLength = ioQueue.getQueueLength();
+        }
     }
-
-
 
     public boolean addProcess(Process p){
         ioQueue.insert(p);
